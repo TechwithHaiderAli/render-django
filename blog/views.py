@@ -53,7 +53,7 @@ def register(request):
         if form.is_valid():
             user = form.save()
             login(request, user)  # Automatically log the user in after registration
-            return redirect('')  # Redirect to the homepage or dashboard
+            return redirect('blog_index')  # Redirect to the homepage or dashboard
     else:
         form = RegisterForm()
     return render(request, 'blog/register.html', {'form': form})

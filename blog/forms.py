@@ -38,4 +38,8 @@ class PostForm(forms.ModelForm):
         model = Post
         fields = ['title', 'body', 'categories']
     
-    categories = forms.ModelMultipleChoiceField(queryset=Category.objects.all(), widget=forms.CheckboxSelectMultiple)
+    categories = forms.ModelMultipleChoiceField(
+        queryset=Category.objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+        label="Select Categories"  # Adding a label for clarity
+    )
