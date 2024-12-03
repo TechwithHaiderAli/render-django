@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from blog.models import Post, Comment
+from blog.models import Post, Comment,Category
 from blog.forms import CommentForm
 from django.http import HttpResponseRedirect
 from django.contrib.auth import login, authenticate
@@ -80,16 +80,18 @@ def create_post(request):
     if request.method == "POST":
         form = PostForm(request.POST)
         if form.is_valid():
-            # Save the new blog post and associate the logged-in user with it
             post = form.save(commit=False)
-            post.author = request.user  # Associate the logged-in user as the author
+            # Process the categories input
+            category_names = form.cleaned_data['categories'].split(',')
+            categories = []
+            for name in category_names:
+                name = name.strip()
+                category, created = Category.objects.get_or_create(name=name)
+                categories.append(category)
             post.save()
-       
-            return redirect('blog_index')  # Redirect to the blog index page after creating the post
+            post.categories.set(categories)
+            return redirect('blog_index')
     else:
         form = PostForm()
-    
-    context = {
-        'form': form,
-    }
-    return render(request, 'blog/create_post.html', context)
+
+    return render(request, 'create_post.html', {'form': form})
