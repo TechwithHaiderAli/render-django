@@ -1,0 +1,44 @@
+<!-- templates/base.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>My Personal Blog</title>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+    <style>
+        .nav-buttons {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        .nav-buttons a {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>My Personal Blog</h1>
+    <a href="{% url 'blog_index' %}">Home</a>
+    <hr>
+    
+    <!-- Navigation buttons -->
+    <div class="nav-buttons">
+        {% if user.is_authenticated %}
+            <span>Welcome, {{ user.username }}!</span>
+            <a href="{% url 'create_post' %}">Write a Blog</a>  <!-- New button for logged-in users -->
+            <form action="{% url 'logout' %}" method="POST">
+                {% csrf_token %}
+                <button type="submit">Logout</button>
+            </form>
+        {% else %}
+            <a href="{% url 'register' %}">Register</a>
+            <a href="{% url 'login' %}">Login</a>
+        {% endif %}
+    </div>
+
+    {% block page_title %}{% endblock page_title %}
+    {% block page_content %}{% endblock page_content %}
+</body>
+</html>

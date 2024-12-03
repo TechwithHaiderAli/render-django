@@ -1,0 +1,45 @@
+<!-- templates/blog/detail.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{{ post.title }}</title>
+</head>
+<body>
+    <h1>{{ post.title }}</h1>
+    <p><strong>Created on:</strong> {{ post.created_on }}</p>
+    
+    <p><strong>Category:</strong>
+        {% if post.categories.all %}
+            {% for category in post.categories.all %}
+                {{ category.name }}{% if not forloop.last %}, {% endif %}
+            {% endfor %}
+        {% else %}
+            No category selected.
+        {% endif %}
+    </p>
+
+    <p>{{ post.body }}</p>
+
+    <h2>Comments</h2>
+    <ul>
+        {% for comment in comments %}
+            <li>
+                <strong>{{ comment.author }}:</strong> {{ comment.body }}
+            </li>
+        {% endfor %}
+    </ul>
+
+    <hr>
+
+    <h3>Add a Comment</h3>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit Comment</button>
+    </form>
+
+    <a href="{% url 'blog_index' %}">Back to Blog</a>
+</body>
+</html>

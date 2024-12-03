@@ -1,0 +1,17 @@
+<!-- templates/login.html -->
+{% extends 'base.html' %}
+
+{% block page_title %}
+    <h2>Login</h2>
+{% endblock %}
+
+{% block page_content %}
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}  <!-- Renders the form fields as paragraph elements -->
+        <button type="submit">Login</button>
+    </form>
+    {% if form.errors %}
+        <p style="color: red;">Invalid credentials. Please try again.</p>
+    {% endif %}
+{% endblock %}

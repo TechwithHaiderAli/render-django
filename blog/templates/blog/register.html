@@ -1,0 +1,14 @@
+<!-- templates/register.html -->
+{% extends 'base.html' %}
+
+{% block page_title %}
+    <h2>Register</h2>
+{% endblock %}
+
+{% block page_content %}
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}  <!-- Renders the form fields as paragraph elements -->
+        <button type="submit">Register</button>
+    </form>
+{% endblock %}
