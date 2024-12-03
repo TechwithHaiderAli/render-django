@@ -1,17 +1,11 @@
-<!-- templates/login.html -->
-{% extends 'base.html' %}
-
-{% block page_title %}
-    <h2>Login</h2>
-{% endblock %}
+{% extends "base.html" %}
 
 {% block page_content %}
-    <form method="POST">
+    <h2>Login to Continue Your Journey!</h2>
+    <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}  <!-- Renders the form fields as paragraph elements -->
+        {{ form.as_p }}
         <button type="submit">Login</button>
     </form>
-    {% if form.errors %}
-        <p style="color: red;">Invalid credentials. Please try again.</p>
-    {% endif %}
+    <p>New here? <a href="{% url 'register' %}">Sign up and start leveling up!</a></p>
 {% endblock %}

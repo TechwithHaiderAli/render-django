@@ -1,5 +1,7 @@
 from django.db import models
-from django.contrib.auth.models import User  # Using the default User model
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver  # Using the default User model
 
 # Category Model
 class Category(models.Model):
@@ -33,3 +35,5 @@ class Comment(models.Model):
 
     def __str__(self):
         return f"{self.author} on {self.post}"
+    
+# Automatically create or update profiles for new users

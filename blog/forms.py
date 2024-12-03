@@ -34,12 +34,12 @@ from django import forms
 from .models import Post, Category
 
 class PostForm(forms.ModelForm):
-    class Meta:
-        model = Post
-        fields = ['title', 'body', 'categories']
-    
     categories = forms.ModelMultipleChoiceField(
         queryset=Category.objects.all(),
         widget=forms.CheckboxSelectMultiple,
-        label="Select Categories"  # Adding a label for clarity
+        label="Select Categories",  # Adding a label for clarity
     )
+
+    class Meta:
+        model = Post
+        fields = ['title', 'body', 'categories']

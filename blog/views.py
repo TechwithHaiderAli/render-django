@@ -84,6 +84,7 @@ def create_post(request):
             post = form.save(commit=False)
             post.author = request.user  # Associate the logged-in user as the author
             post.save()
+       
             return redirect('blog_index')  # Redirect to the blog index page after creating the post
     else:
         form = PostForm()
