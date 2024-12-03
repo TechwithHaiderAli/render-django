@@ -127,4 +127,4 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-#postgresql://django_0eo6_user:Jlh9t2YoyYVGtxP7zDjt88yxN5jiaJyw@dpg-ct7gb41u0jms73dqoafg-a.oregon-postgres.render.com/django_0eo6
+#postgresql://django_0eo6_user:Jlh9t2YoyYVGtxP7zDjt88yxN5jiaJyw@dpg-ct7gb41u0jms73dqoafg-a.oregon-postgres.render.com/django_0eo6 
